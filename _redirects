@@ -1,0 +1,23 @@
+# Old WordPress pages -> new pages (301 = permanent, keeps Google rankings)
+/products/sealed-edge-trim-2/*   /products.html#trim        301
+/products/sheets-2/*             /products.html#sheets      301
+/products/corner-board-2/*       /products.html#corners     301
+/products/mouldings/*            /products.html#mouldings   301
+/products/bead-board/*           /products.html#beadboard   301
+/products/soffit-system/*        /products.html#soffit      301
+/products/skirtboard/*           /products.html#specialty   301
+/products/specialty-trim-boards/* /products.html#specialty  301
+/products/column-wraps/*         /products.html#wraps       301
+/products/*                      /products.html             301
+/products                        /products.html             301
+/resources/*                     /cad.html                  301
+/resources                       /cad.html                  301
+/why-pvc/*                       /performance.html          301
+/why-pvc                         /performance.html          301
+/where-to-buy/*                  /dealers.html              301
+/where-to-buy                    /dealers.html              301
+/contact/*                       /contact.html              301
+/contact                         /contact.html              301
+/privacy/*                       /privacy.html              301
+/catalog                         /docs/green-atlantic-catalog.pdf 302
+/cad                             /cad.html                  301
