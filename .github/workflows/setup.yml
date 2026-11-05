@@ -1,0 +1,64 @@
+name: Set up site
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack the website zip
+        run: |
+          z=$(ls *.zip 2>/dev/null | head -1)
+          if [ -n "$z" ]; then
+            unzip -o -q "$z" -x '.github/*' '__MACOSX/*'
+            git rm -q --cached "$z" || true
+            rm -f "$z"
+            echo "Unpacked $z"
+          else
+            echo "No zip found, skipping"
+          fi
+      - name: Copy drawings from the old site
+        run: |
+          [ -f old-files.txt ] || exit 0
+          while IFS= read -r path; do
+            [ -z "$path" ] && continue
+            [ -f "$path" ] && continue
+            mkdir -p "$(dirname "$path")"
+            curl -fsSL --retry 3 -o "$path" "https://greenatlanticpvc.com/$path" && echo "copied $path" || { echo "MISSING $path"; rm -f "$path"; }
+          done < old-files.txt
+      - name: Make a thumbnail of each drawing
+        run: |
+          [ -f old-files.txt ] || exit 0
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils >/dev/null
+          pip install --quiet pillow
+          python3 - <<'PY'
+          import os, subprocess, json, tempfile
+          from PIL import Image, ImageOps
+          os.makedirs("cad-thumbs", exist_ok=True)
+          out = {}
+          for path in open("old-files.txt").read().split():
+              if not path.endswith(".pdf") or not os.path.exists(path):
+                  continue
+              name = path.replace("wp-content/uploads/", "").replace("/", "-")[:-4] + ".png"
+              tmp = tempfile.mktemp()
+              if subprocess.run(["pdftoppm", "-png", "-r", "110", "-f", "1", "-l", "1", "-singlefile", path, tmp]).returncode:
+                  continue
+              im = Image.open(tmp + ".png").convert("L")
+              box = ImageOps.invert(im).point(lambda v: 255 if v > 30 else 0).getbbox()
+              if box:
+                  im = im.crop((max(0, box[0]-8), max(0, box[1]-8), min(im.width, box[2]+8), min(im.height, box[3]+8)))
+              im.thumbnail((520, 360))
+              im.save("cad-thumbs/" + name, optimize=True)
+              out[path] = "cad-thumbs/" + name
+          open("cad-thumbs/index.js", "w").write("window.GA_THUMBS = " + json.dumps(out, indent=0) + ";\n")
+          print(len(out), "thumbnails")
+          PY
+      - name: Save to the repo
+        run: |
+          git config user.name  "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Set up site: unpack, copy drawings, make thumbnails" || echo "Nothing new"
+          git push
