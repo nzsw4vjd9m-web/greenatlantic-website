@@ -62,7 +62,7 @@
   }
   function preview(x, alt) {
     var d = x.d;
-    if (d[0] === "img") return '<img src="profiles/' + d[1] + '.png" alt="' + alt + ' profile" loading="lazy">';
+    if (d[0] === "img") return '<img src="profiles/' + d[1] + '.svg" alt="' + alt + ' profile" loading="lazy">';
     /* live site: a thumbnail of the real drawing, made from the PDF itself */
     var th = x.f && window.GA_THUMBS && window.GA_THUMBS[x.f];
     if (th) return '<img class="dwg" src="/' + th + '" alt="' + alt + ' drawing" loading="lazy">';
@@ -112,7 +112,7 @@
   if (board && window.GA_PROFILES) {
     var PPI = window.innerWidth < 600 ? 30 : 46;
     board.innerHTML = window.GA_PROFILES.map(function (p) {
-      return '<a class="bp" href="/cad.html#' + (p.g || "crown") + '" style="text-decoration:none"><figure><img src="profiles/' + p.img + '.png" alt="' + (p.c ? p.c + " " : "") + p.n + ' profile" width="' + Math.round(p.w * PPI) + '" height="' + Math.round(p.h * PPI) + '" loading="lazy"><figcaption><b>' + (p.c || "&nbsp;") + "</b>" + p.n + "</figcaption></figure></a>";
+      return '<a class="bp" href="/cad.html#' + (p.g || "crown") + '" style="text-decoration:none"><figure><img src="profiles/' + p.img + '.svg" alt="' + (p.c ? p.c + " " : "") + p.n + ' profile" width="' + Math.round(p.w * PPI) + '" height="' + Math.round(p.h * PPI) + '" loading="lazy"><figcaption><b>' + (p.c || "&nbsp;") + "</b>" + p.n + "</figcaption></figure></a>";
     }).join("");
     var sc = $("#board-scale"); if (sc) sc.querySelector("i").style.width = PPI + "px";
   }
