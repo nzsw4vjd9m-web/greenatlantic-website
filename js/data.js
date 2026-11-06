@@ -111,7 +111,7 @@ window.GA_DOCS = [
   {n:"Code Compliance Research Report CCRR-0420",t:"Intertek evaluation against the IBC and IRC.",f:"docs/green-atlantic-ccrr-0420.pdf"},
   {n:"Limited Warranty and Care Guide",t:"30 years on white, 10 years on black. Effective January 1, 2026.",f:"docs/green-atlantic-warranty.pdf"},
   {n:"Trim and Moulding Installation Guide",t:"Fasteners, fastening pattern, expansion, joints, and installation by application. November 2026.",f:"docs/green-atlantic-installation-guide.pdf"},
-  {n:"Bead Board Installation Guide",t:"Porch ceilings and wainscot.",f:"wp-content/uploads/2020/11/install-bead-board.pdf"},
+  {n:"Beadboard Installation Guide",t:"Bead Board, Stealth Bead Board, Beaded Planking and beaded sheet: ceilings, soffits and wainscot. November 2026.",f:"docs/green-atlantic-beadboard-guide.pdf"},
   {n:"Storage and Handling Guide",t:"Sheets, trim boards and mouldings.",f:"wp-content/uploads/2020/11/storage-guide.pdf"},
   {n:"Typical Properties",t:"Physical and thermal data with test methods.",f:"wp-content/uploads/2020/12/spec-sheet.pdf"},
   {n:"Safety Data Sheet",t:"Material safety information.",f:"wp-content/uploads/2020/11/material-safety-data-sheet.pdf"}
