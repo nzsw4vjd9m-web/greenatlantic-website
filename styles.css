@@ -165,7 +165,8 @@ td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
 tbody tr:nth-child(odd) td{background:#F7F9FB}
 td.num{white-space:nowrap}
 td b{font-weight:500;color:var(--navy)}
-td img.prof{max-height:44px;width:auto}
+td.pcell{text-align:center;padding-top:14px;padding-bottom:14px}
+td img.prof{display:inline-block;max-width:none;height:auto}
 .tables{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 @media (max-width:860px){.tables{grid-template-columns:1fr}}
 .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
@@ -238,3 +239,14 @@ td img.prof{max-height:44px;width:auto}
 @media (max-width:860px){.ftr .cols{grid-template-columns:1fr 1fr}}
 .skip{position:absolute;left:-999px;top:8px;background:#fff;padding:10px 14px;z-index:99}
 .skip:focus{left:8px}
+
+/* dealer listing */
+.dealer{margin-top:28px;border:1px solid var(--line);border-top:3px solid var(--leaf);background:#fff;display:grid;grid-template-columns:1.1fr 2fr;gap:clamp(20px,3vw,44px);padding:clamp(22px,3vw,36px)}
+.dealer h3{font-family:var(--serif);font-size:clamp(26px,2.6vw,34px);font-weight:400;color:var(--navy);margin:0 0 10px}
+.dealer-name p{color:var(--slate);margin:0}
+.dealer-locs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dealer-locs h4{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin:0 0 8px;font-weight:500}
+.dealer-locs p{margin:0 0 8px;line-height:1.55}
+.dealer-locs a{color:var(--blue)}
+@media (max-width:860px){.dealer{grid-template-columns:1fr}.dealer-locs{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.dealer-locs{grid-template-columns:1fr}}
